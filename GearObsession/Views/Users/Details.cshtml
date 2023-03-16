@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@using GearObsession.Models
+@model GearObsession.Models.User
+
+<h2>User Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if (@Model.JoinEntities.Count == 0)
+{
+  <p>This user does not have any items yet!</p>
+}
+else
+{
+  <h4>This user has the following items:</h4>
+  <ul>
+  @foreach (ItemUser join in Model.JoinEntities)
+    {
+      <li>Tag: @join.Item.Name</li>
+      @using (Html.BeginForm("DeleteJoin", "Items"))
+      {
+        @Html.Hidden("joinId", @join.ItemUserId)
+        <input type="submit" value="Delete" />
+      }
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit User", "Edit", new { id = Model.UserId })</p>
+<p>@Html.ActionLink("Add an Item", "AddItem", new { id = Model.UserId })</p>
+<p>@Html.ActionLink("Delete User", "Delete", new { id = Model.UserId })</p>

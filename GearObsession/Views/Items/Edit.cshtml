@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GearObsession.Models.Item
+
+<h2>Edit</h2>
+
+<h4>Edit this item: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ItemId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId")
+  
+  @Html.LabelFor(model => model.Brand)
+  @Html.TextBoxFor(model => model.Brand)
+
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+
+  @Html.LabelFor(model => model.Weight)
+  @Html.TextBoxFor(model => model.Weight, new {type="number"})
+
+  @Html.LabelFor(model => model.Price)
+  @Html.TextBoxFor(model => model.Price, new {type="number"})
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GearObsession.Models.Item
+
+<h2>Add a user</h2>
+
+<h4>Add a user to this item: @Html.DisplayFor(model => model.Description)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ItemId)
+
+    @Html.Label("Select tag")
+    @Html.DropDownList("UserId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to items", "Index")</p>

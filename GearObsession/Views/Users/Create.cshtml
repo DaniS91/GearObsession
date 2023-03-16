@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GearObsession.Models.User
+
+<h4>Add a new user</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add new user" />
+}
+<p>@Html.ActionLink("Show all users", "Index")</p>
