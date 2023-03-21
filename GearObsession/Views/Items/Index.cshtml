@@ -10,12 +10,41 @@
 {
   <h3>No items have been added yet!</h3>
 }
+<table>
+  <tr>
+    <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm})</th>
+    <th>@Html.ActionLink("Brand", "Index", new { sortOrder = ViewBag.BrandSortParm})</th>
+    <th>@Html.ActionLink("Weight", "Index", new { sortOrder = ViewBag.WeightSortParm})</th>
+    <th>@Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm})</th>
+    <th>Category</th>
+    <th>Actions</th>
+  </tr>
 
 @foreach (Item item in Model)
 {
-  <li>@Html.ActionLink($"{item.Name}", "Details", new { id = item.ItemId })</li>
-}
+  <tr>
+    <td>
+      @Html.ActionLink($"{item.Name}", "Details", new { id = item.ItemId })
+    </td>
+    <td>
+      @Html.DisplayFor(Item => item.Brand)
+    </td>
+    <td>
+      @Html.DisplayFor(Item => item.Weight) oz
+    </td>
+     <td>
+      $@Html.DisplayFor(Item => item.Price)
+    </td>
+    <td>
+      @Html.DisplayFor(Item => item.Category.Name)
+    </td>
+    <td>
+      @Html.ActionLink("Edit", "Edit", new { id = item.ItemId }) |
+      @Html.ActionLink("Delete", "Delete", new { id = item.ItemId })
+    </td>
+  </tr>
 
-<p>@Html.ActionLink("Add new item", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
-<p>@Html.ActionLink("See all items", "Index", "Items")</p>
+  @* <li>@Html.ActionLink($"{item.Name}", "Details", new { id = item.ItemId })</li> *@
+}
+</table>
+<a href="/Items/Create"><button type="button" class="btn btn-primary">Add New Item</button></a>
