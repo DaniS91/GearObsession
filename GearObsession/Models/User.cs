@@ -9,5 +9,13 @@ namespace GearObsession.Models
     public string Name { get; set; }
     //Items
     public List<ItemUser> JoinEntities { get; }
+
+    public int getTotalWeight(){
+      int x = 0;
+      foreach (ItemUser join in this.JoinEntities){
+        x+= join.Item.Weight;
+      }
+      return x;
+    }
   }
 }
