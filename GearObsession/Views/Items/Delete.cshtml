@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GearObsession.Models.Item
+
+<h2>Are you sure you want to delete this?</h2>
+@Html.DisplayNameFor(model => model.Brand): @Html.DisplayFor(model => model.Brand)
+<br>
+@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+<br>
+@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
+<br>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" class="btn btn-danger" />
+}

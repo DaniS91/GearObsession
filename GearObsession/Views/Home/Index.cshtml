@@ -2,7 +2,32 @@
   Layout = "_Layout";
 }
 
+@using GearObsession.Models;
+
 <h1>Welcome to GearObsession!</h1>
-<p>@Html.ActionLink("See all items", "Index", "Items")</p>
-<p>@Html.ActionLink("See all categories", "Index", "Categories")</p>
-<p>@Html.ActionLink("See all users", "Index", "Users")</p>
+
+<hr>
+
+<h4>Categories</h4>
+@if (Model["categories"].Length == 0)
+{
+  <p>No categories have been added yet!</p>
+} 
+<ul>
+  @foreach (Category cat in Model["categories"])
+  {
+    <li>@Html.ActionLink(@cat.Name, "Details", "Categories", new { id = @cat.CategoryId})</li>
+  }
+</ul>
+
+<h4>Items</h4>
+@if (Model["items"].Length == 0)
+{
+  <p>No items have been added yet!</p>
+} 
+<ul>
+  @foreach (Item item in Model["items"])
+  {
+    <li>@Html.ActionLink(@item.Name, "Details", "Items", new { id = @item.ItemId}) | @item.Brand | @item.Weight | @item.Price </li>
+  }
+</ul>

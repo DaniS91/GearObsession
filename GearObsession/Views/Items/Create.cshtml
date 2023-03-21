@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+
+@model GearObsession.Models.Item
+
+<h4>Add a new item</h4>
+@* <p>@Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+<p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p> *@
+
+@using (Html.BeginForm())
+{
+  <div>
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+  </div>
+
+  <div>
+  @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId")
+  </div>
+  <div>
+  @Html.LabelFor(model => model.Brand)
+  @Html.TextBoxFor(model => model.Brand)
+  </div>
+  <div>
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+  </div>
+  <div>
+  @Html.LabelFor(model => model.Weight, "Weight in ounces")
+  @Html.TextBoxFor(model => model.Weight, new {type="number"})
+  </div>
+  <div>
+  @Html.LabelFor(model => model.Price)
+  @Html.TextBoxFor(model => model.Price, new {type="number", step="0.01", value="0.00", placeholder="0.00"})
+  </div>
+  <div>
+  <input type="submit" value="Add New item" class="btn btn-primary"/>
+  </div>
+}

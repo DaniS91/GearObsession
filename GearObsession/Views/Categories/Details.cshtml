@@ -39,7 +39,7 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Back to categories", "Index")</p>
-<p>@Html.ActionLink("Edit Category", "Edit", new { id = Model.CategoryId })</p>
-<p>@Html.ActionLink("Delete Category", "Delete", new { id = Model.CategoryId })</p>
-<p>@Html.ActionLink("Add new item", "Create", "Items")</p>
+
+<p>@Html.ActionLink("Edit Category", "Edit", new { id = Model.CategoryId }, new { @class = "btn btn-warning" })</p>
+<p>@Html.ActionLink("Delete Category", "Delete", new { id = Model.CategoryId }, new { @class = "btn btn-danger" })</p>
+<a href="/Items/Create"><button type="button" class="btn btn-primary">Add New Item</button></a>

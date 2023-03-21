@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@using GearObsession.Models
+@model GearObsession.Models.Item
+
+<h2>Item Details</h2>
+<hr/>
+<h4>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h4>
+<h4>@Html.DisplayNameFor(model => model.Brand): @Html.DisplayFor(model => model.Brand)</h4>  
+<h4>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(model => model.Category.Name)</h4>
+<h4>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h4>
+<h4>@Html.DisplayNameFor(model => model.Weight): @Html.DisplayFor(model => model.Weight) oz</h4>
+<h4>@Html.DisplayNameFor(model => model.Price): $@Html.DisplayFor(model => model.Price)</h4>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This item does not have any users yet!</p>
+}
+else
+{
+  <h4>Users:</h4>
+  <ul>
+    @foreach(ItemUser join in Model.JoinEntities)
+    {
+      <li>@Html.ActionLink(@join.User.Name, "Details", "Users", new { id = join.User.UserId })</li>
+    }
+  </ul>
+}
+<hr>
+<span>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId }, new {@class = "btn btn-warning"})</span>
+<span>@Html.ActionLink("Assign Item to User", "AddUser", new { id = Model.ItemId }, new {@class = "btn btn-secondary"})</span>
+<span>@Html.ActionLink("Create User", "Create", "Users", null, new {@class = "btn btn-success"})</span>
+<span>@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId},  new {@class = "btn btn-danger"})</span>

@@ -15,21 +15,24 @@
 }
 else
 {
-  <h4>This user has the following items:</h4>
+  <h4>Items assigned to this user:</h4>
   <ul>
   @foreach (ItemUser join in Model.JoinEntities)
     {
-      <li>Tag: @join.Item.Name</li>
-      @using (Html.BeginForm("DeleteJoin", "Items"))
+      <li>@join.Item.Brand | @join.Item.Name | @join.Item.Weight</li>
+      @using (Html.BeginForm("DeleteItemFromUser", "Items"))
       {
         @Html.Hidden("joinId", @join.ItemUserId)
-        <input type="submit" value="Delete" />
+        @Html.Hidden("userId", Model.UserId)
+        <input type="submit" value="Delete" class="btn btn-secondary" />
       }
     }
   </ul>
+  <h5>Total Weight: @ViewBag.TotalWeight</h5>
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit User", "Edit", new { id = Model.UserId })</p>
-<p>@Html.ActionLink("Add an Item", "AddItem", new { id = Model.UserId })</p>
-<p>@Html.ActionLink("Delete User", "Delete", new { id = Model.UserId })</p>
+<hr>
+
+<p>@Html.ActionLink("Edit User", "Edit", new { id = Model.UserId }, new {@class = "btn btn-warning"})</p>
+<p>@Html.ActionLink("Assign An Item", "AddItem", new { id = Model.UserId }, new {@class = "btn btn-secondary"})</p>
+<p>@Html.ActionLink("Delete User", "Delete", new { id = Model.UserId, }, new {@class = "btn btn-danger"})</p>
