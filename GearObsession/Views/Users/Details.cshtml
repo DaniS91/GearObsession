@@ -9,6 +9,11 @@
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
+@foreach (var entry in ViewBag.testDict)
+{
+  <p>@entry.Key : @entry.Value oz</p>
+}
+
 @if (@Model.JoinEntities.Count == 0)
 {
   <p>This user does not have any items yet!</p>

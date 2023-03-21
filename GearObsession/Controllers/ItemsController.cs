@@ -23,6 +23,7 @@ namespace GearObsession.Controllers
       ViewBag.BrandSortParm = sortOrder == "Brand" ? "brand_desc" : "Brand";
       ViewBag.WeightSortParm = sortOrder == "Weight" ? "weight_desc" : "Weight";
       ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+      ViewBag.CategorySortParm = sortOrder == "Category" ? "category_desc" : "Category";
       var items = (from s in _db.Items
                   .Include(s => s.Category)
                   select s);
@@ -52,6 +53,12 @@ namespace GearObsession.Controllers
             break;
           case "price_desc":
             items = items.OrderByDescending(s => s.Price);
+            break;
+            case "Category":
+            items = items.OrderBy(s => s.Category.Name);
+            break;
+          case "category_desc":
+            items = items.OrderByDescending(s => s.Category.Name);
             break;
           default:
             items = items.OrderBy(s => s.ItemId);
