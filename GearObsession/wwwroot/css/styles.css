@@ -1,0 +1,10 @@
+table {
+  width: 80%;
+}
+
+th, td {
+  border: 1px solid darkgray;
+  padding: 5px;
+}
+
+tr:hover {background-color: lightgreen;}
