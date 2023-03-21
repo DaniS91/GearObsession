@@ -14,36 +14,14 @@ namespace GearObsession.Models
 
     public string Description {get; set; }
 
-   
-
-    // public int Weight { get; set; }
-    private int _Weight; //private field
-    public int Weight //public property
-    {
-    get // a property accessor used to return the property value
-    {
-        return _Weight; 
-    }
-    set // a property accessor used to assign a new value
-    {
-      string input = value;
-        _Weight = Int32.Parse(input);
-    }
-    }
+    public int Weight { get; set; }
 
     public decimal Price { get; set; }
 
-    //Categories
     public int CategoryId { get; set; }
 
     public Category Category { get; set; }
 
-    //JoinEtity
     public List<ItemUser> JoinEntities { get; }
-
-    public void convertSomething()
-    {
-
-    }
   }
 }

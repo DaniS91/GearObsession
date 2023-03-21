@@ -27,6 +27,8 @@ namespace GearObsession.Controllers
           .Include(user => user.JoinEntities)
           .ThenInclude(join => join.Item)
           .FirstOrDefault(user => user.UserId == id);
+      ViewBag.TotalWeight = thisUser.getTotalWeight();
+
       return View(thisUser);
     }
 
@@ -45,7 +47,7 @@ namespace GearObsession.Controllers
     public ActionResult AddItem(int id)
     {
       User thisUser = _db.Users.FirstOrDefault(users => users.UserId == id);
-      ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "Description");
+      ViewBag.ItemId = new SelectList(_db.Items, "ItemId", "Name");
       return View(thisUser);
     }
 
@@ -100,6 +102,5 @@ namespace GearObsession.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
   }
 }
