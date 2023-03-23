@@ -1,18 +1,15 @@
+
 @{
   Layout = "_Layout";
 }
-
 @using GearObsession.Models
 @model GearObsession.Models.User
+
+
 
 <h2>User Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
-
-@foreach (var entry in ViewBag.testDict)
-{
-  <p>@entry.Key : @entry.Value oz</p>
-}
 
 @if (@Model.JoinEntities.Count == 0)
 {
@@ -20,19 +17,55 @@
 }
 else
 {
+  <ejs-accumulationchart id="container" title="Gear Breakdown">
+	<e-accumulationchart-legendsettings visible="false">
+	</e-accumulationchart-legendsettings>
+	<e-accumulation-series-collection>
+		<e-accumulation-series dataSource="ViewBag.dataSource" xName="xValue" yName="yValue" name="Browser" innerRadius="40%">
+			<e-accumulationseries-datalabel name="text" visible="true">
+			</e-accumulationseries-datalabel>
+		</e-accumulation-series>
+	</e-accumulation-series-collection>
+</ejs-accumulationchart>
   <h4>Items assigned to this user:</h4>
-  <ul>
+  <table>
+  <tr>
+    <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm})</th>
+    <th>@Html.ActionLink("Brand", "Index", new { sortOrder = ViewBag.BrandSortParm})</th>
+    <th>@Html.ActionLink("Weight", "Index", new { sortOrder = ViewBag.WeightSortParm})</th>
+    <th>@Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm})</th>
+    <th>@Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm})</th>
+    <th>Actions</th>
+  </tr>
   @foreach (ItemUser join in Model.JoinEntities)
     {
-      <li>@join.Item.Brand | @join.Item.Name | @join.Item.Weight</li>
+      <tr>
+    <td>
+      @Html.DisplayFor(Item => join.Item.Name)
+    </td>
+    <td>
+      @Html.DisplayFor(Item => join.Item.Brand)
+    </td>
+    <td>
+      @Html.DisplayFor(Item => join.Item.Weight) oz
+    </td>
+     <td>
+      $@Html.DisplayFor(Item => join.Item.Price)
+    </td>
+    <td>
+      @Html.DisplayFor(Item => join.Item.Category.Name)
+    </td>
+    <td>
       @using (Html.BeginForm("DeleteItemFromUser", "Items"))
       {
         @Html.Hidden("joinId", @join.ItemUserId)
         @Html.Hidden("userId", Model.UserId)
         <input type="submit" value="Delete" class="btn btn-secondary" />
       }
+    </td>
+  </tr>
     }
-  </ul>
+  </table>
   <h5>Total Weight: @ViewBag.TotalWeight</h5>
 }
 
