@@ -8,3 +8,7 @@ th, td {
 }
 
 tr:hover {background-color: lightgreen;}
+
+body {
+  margin: 10px;
+}
