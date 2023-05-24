@@ -15,7 +15,7 @@
 
 ## Description
 This application was a collaborative project as part of [Epicodus][Epicodus] coursework in C# and .NET. The application was created to demonstrate ability to use the Entity Framework Core and MySQL databases with many-to-many relationships; it also uses ASP.NET Core MVC to handle routing and requests and uses Entity FrameWork Core to communicate to a MySql database using .NET objects. The website itself displays items, categories, and users and lists their details. All categories and items are listed on the home page; the items view is formatted using a table that can be sorted by property. The users view includes a chart created using [SyncFusion Interactive Chart Library][Syncfusion] and a table that calculates the total weight of all items assigned to that user.
-![screenshot of users page including table and chart](.\GearObsession\wwwroot\chartimg.jpg)
+![screenshot of users page including table and chart](GearObsession\wwwroot\chartimg.jpg)
 
 ## Setup/Installation Requirements
 
